@@ -936,7 +936,7 @@ B_03_12_debounce_ms_int <- 250L
 ###### B_03_13: Version ########################################################
 # Note: Semantic version, shown in the footer; CHANGELOG.md has the history.
 
-B_03_13_version_chr <- "1.0.6"
+B_03_13_version_chr <- "1.0.7"
 
 ###### B_03_14: Source Repository ##############################################
 # Note: The GitHub repo, linked from the footer.
@@ -1891,33 +1891,29 @@ F_01_01_app_server_fn <- function(input, output, session) {
       class = "narrative",
       tags$div(class = "nar-head", "Certainty Equivalence and Its Failure"),
       tags$p(HTML(paste(
-        "<strong>What changed.</strong> Nothing about the consumer's risk,",
-        "their income, their patience or the interest rate. Only the third",
-        "derivative of the utility function. Quadratic utility has u''' = 0",
-        "and therefore no prudence, so σ² cannot appear in the consumption",
-        "function at all — that is certainty equivalence, and it is what",
-        "makes the random walk of stage 4 exact. CARA has u''' &gt; 0, and",
-        "the same σ² now lowers consumption today by ασ²/(2r) and makes",
-        "it drift up by ασ²/2 a period."
+        "The only thing that changed between stage 4 and here is the third",
+        "derivative of utility. Quadratic utility has u''' = 0, so",
+        "&sigma;<sup>2</sup> cannot enter the consumption function: that is",
+        "certainty equivalence, and it is what makes the random walk exact.",
+        "CARA has u''' &gt; 0. The same &sigma;<sup>2</sup> now lowers",
+        "consumption today by &alpha;&sigma;<sup>2</sup>/(2r) and makes it",
+        "drift up by &alpha;&sigma;<sup>2</sup>/2 a period."
       ))),
       tags$p(HTML(paste(
-        "<strong>Why the buffer is linear in α.</strong> Under CARA the",
-        "coefficient of absolute prudence −u'''/u'' equals the coefficient",
-        "of absolute risk aversion −u''/u', and both equal α. Risk aversion",
-        "says how much the consumer dislikes the risk; prudence says how",
-        "much they do about it. They are separate ideas that CARA happens",
-        "to collapse into one number, which is exactly why CARA is the",
-        "utility function the exam question uses."
+        "The buffer is linear in &alpha; because under CARA absolute",
+        "prudence, &minus;u'''/u'', and absolute risk aversion,",
+        "&minus;u''/u', are both equal to &alpha;. Risk aversion is how much",
+        "the consumer dislikes the risk; prudence is how much they do about",
+        "it. CARA collapses the two into one number, which is why the exam",
+        "question uses it."
       ))),
       tags$p(HTML(paste(
-        "<strong>What to take from it.</strong> The random walk is not a",
-        "prediction of the permanent income hypothesis; it is a prediction",
-        "of the permanent income hypothesis plus quadratic utility. Any",
-        "utility function with a convex marginal utility — which is to say",
-        "essentially all of them — predicts that consumption rises in",
-        "expectation, and that the rise is larger where income risk is",
-        "larger. That is testable, and it is a large part of why buffer",
-        "stock models replaced the pure random walk."
+        "So the random walk is a prediction of the permanent income",
+        "hypothesis plus quadratic utility, not of the hypothesis alone.",
+        "Any utility with convex marginal utility predicts that consumption",
+        "rises in expectation, and by more where income risk is larger.",
+        "That is testable, and it is much of why buffer stock models",
+        "replaced the pure random walk."
       )))
     )
   })
@@ -1928,28 +1924,26 @@ F_01_01_app_server_fn <- function(input, output, session) {
       class = "narrative",
       tags$div(class = "nar-head", "Testing Ricardian Equivalence"),
       tags$p(HTML(paste(
-        "<strong>What the theory says.</strong> Government debt is not net",
-        "wealth. A tax cut today is a tax rise tomorrow of exactly the same",
-        "present value, so a forward-looking consumer saves the whole thing.",
-        "Private saving should rise one for one with public dissaving."
+        "Government debt is not net wealth. A tax cut today is a tax rise",
+        "tomorrow of the same present value, so a forward-looking consumer",
+        "saves the whole thing and private saving rises one for one with",
+        "public dissaving."
       ))),
       tags$p(HTML(paste(
-        "<strong>How you would test it.</strong> Look for a consumption",
-        "response to a tax change that was announced in advance, so the",
-        "news and the money arrive at different times. If consumption moves",
-        "when the money arrives rather than when the news does, consumers",
-        "are not behaving as the theory says. The same design tests the",
-        "random walk in stage 4."
+        "The test is a tax change announced in advance, so the news and",
+        "the money arrive at different times. If consumption moves when the",
+        "money arrives rather than when the news does, the theory fails.",
+        "The same design tests the random walk in stage 4."
       ))),
       tags$p(HTML(paste(
-        "<strong>What is found.</strong> Consumption does respond to",
-        "predictable income, and by more than the theory allows. The usual",
-        "reading is that a substantial share of aggregate income goes to",
-        "households that are credit constrained or not looking far ahead —",
-        "the λ on the left, and the high-MPC households in the Keynesian",
-        "multiplier app. Campbell and Mankiw's λ ≈ 0.5 is an income share,",
-        "so because those households earn less than average the share of",
-        "households behaving this way is higher still."
+        "Consumption does respond to predictable income, and by more than",
+        "the theory allows. The usual reading is that a large share of",
+        "income goes to households that are credit constrained or not",
+        "looking far ahead: the &lambda; on the left, and the high-MPC",
+        "households in the Keynesian multiplier app. Campbell and Mankiw's",
+        "&lambda; &asymp; 0.5 is an income share, and those households earn",
+        "less than average, so the share of households behaving this way is",
+        "higher still."
       )))
     )
   })
