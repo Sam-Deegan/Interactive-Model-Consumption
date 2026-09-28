@@ -936,7 +936,7 @@ B_03_12_debounce_ms_int <- 250L
 ###### B_03_13: Version ########################################################
 # Note: Semantic version, shown in the footer; CHANGELOG.md has the history.
 
-B_03_13_version_chr <- "1.0.4"
+B_03_13_version_chr <- "1.0.5"
 
 ###### B_03_14: Source Repository ##############################################
 # Note: The GitHub repo, linked from the footer.
