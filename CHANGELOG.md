@@ -1,0 +1,30 @@
+# Changelog
+
+All notable changes to this app. Versions follow [Semantic Versioning](https://semver.org/):
+MAJOR for a change to the model or its notation, MINOR for new features
+(a stage, a worked example, a figure), PATCH for fixes and wording.
+Each release is tagged in git as `vX.Y.Z` and shown in the app footer.
+
+## [1.0.0] - 2026-09-28
+
+First public release as a standalone repository.
+
+### Model
+- A T-period consumer with CRRA utility: the Euler equation, the annuity
+  factor, the MPC out of a windfall and its permanent income limit
+  r/(1+r), following Romer (2019) ch. 8.
+- An AR(1) income process and the random-walk pass-through
+  r/(1 + r - phi); a debt-financed tax cut with the two switches that break
+  Ricardian equivalence (Romer ch. 13).
+- Precautionary saving under CARA utility: the drift alpha sigma^2/2 and
+  the buffer alpha sigma^2/(2r), as in question 2 of the 2023 paper.
+- The two-period diagram (budget line and indifference curves) is drawn
+  from the same solution as the consumption plan.
+
+### App
+- Six stages that add one layer of the model at a time.
+- Ten worked examples, each stage opening on its first.
+- Equations, Notation and In Words tabs that track the model at each stage.
+- Eight readout tiles, warnings when the calibration stops making sense,
+  and narrative cards on Ricardian equivalence and certainty equivalence.
+- Ghost curves showing the loaded worked example alongside the live sliders.
