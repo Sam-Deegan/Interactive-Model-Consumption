@@ -936,7 +936,7 @@ B_03_12_debounce_ms_int <- 250L
 ###### B_03_13: Version ########################################################
 # Note: Semantic version, shown in the footer; CHANGELOG.md has the history.
 
-B_03_13_version_chr <- "1.0.7"
+B_03_13_version_chr <- "1.0.8"
 
 ###### B_03_14: Source Repository ##############################################
 # Note: The GitHub repo, linked from the footer.
@@ -1009,6 +1009,14 @@ D_01_01_plan_fn <- function(par, ref = NULL) {
   p +
     T_02_02_mark_y_fn(par$income, expression(bar(Y))) +
     labs(
+      title = if (abs(par$windfall) > 1e-9) {
+        paste0("A transfer of ", T_02_05_num_fn(par$windfall, 0),
+               " raises consumption today by ",
+               T_02_05_num_fn(plan$consumption[1] - base$consumption[1], 2))
+      } else {
+        paste0("The consumption plan: consumption today is ",
+               T_02_05_num_fn(plan$consumption[1], 2))
+      },
       x = expression(bold("Period (" * t * ")")),
       y = expression(bold("Income and consumption (" * Y[t] * ", " *
                             C[t] * ")")),
@@ -1062,6 +1070,9 @@ D_01_03_horizon_fn <- function(par, ref = NULL) {
     T_02_02_mark_x_fn(par$horizon, expression(T)) +
     coord_cartesian(ylim = c(0, y_top)) +
     labs(
+      title = paste0("With ", par$horizon,
+                     " periods left, ", T_02_06_pct_fn(now, 1),
+                     " of a windfall is spent today"),
       x = expression(bold("Periods of life remaining (" * T * ")")),
       y = expression(bold("Marginal propensity to consume (" * 1 / S * ")")),
       caption = paste(
@@ -1139,13 +1150,15 @@ D_01_04_two_period_fn <- function(par) {
              label = "'IC ('*bar(U) > bar(U)^'*'*')'",
              parse = TRUE, size = 3.0, hjust = 0, vjust = 0.5,
              colour = T_01_01_palette_vec[["muted"]],
-             fill = "white", label.size = 0,
+             fill = T_01_01_palette_vec[["wash"]], label.size = 0,
              label.padding = grid::unit(0.12, "lines")) +
     annotate("text", x = x_right, y = end_fn(best) - lift_num,
              label = "'IC ('*bar(U)^'*'*')'",
              parse = TRUE, size = 3.0, hjust = 1, vjust = 0.5,
              colour = T_01_01_palette_vec[["muted"]]) +
     labs(
+      title = paste("Budget Constraint (BC) and",
+                    "\nIndifference Curves (IC)"),
       x = expression(bold("Consumption today (" * C[1] * ")")),
       y = expression(bold("Consumption next period (" * C[2] * ")")),
       caption = paste0(
@@ -1182,6 +1195,7 @@ D_02_01_response_fn <- function(par) {
     T_02_02_mark_y_fn(1, expression(Delta * Y[t])) +
     coord_cartesian(ylim = c(0, max(c(df$response, 1)) * 1.18)) +
     labs(
+      title = "The Consumption Response to One Euro",
       x = NULL,
       y = expression(bold("Rise in consumption today (" * Delta * C[t] * ")")),
       caption = paste0(
@@ -1238,6 +1252,8 @@ D_02_02_path_fn <- function(par, ref = NULL) {
     T_02_02_mark_y_fn(par$income, expression(bar(Y))) +
     expand_limits(y = par$income) +
     labs(
+      title = paste0("A shock to income raises consumption by ",
+                     T_02_05_num_fn(sm$ratio, 3), " of itself"),
       x = expression(bold("Period (" * t * ")")),
       y = expression(bold("Income and consumption (" * Y[t] * ", " *
                             C[t] * ")")),
@@ -1277,6 +1293,8 @@ D_03_01_breaks_fn <- function(par) {
     )) +
     T_02_02_mark_y_fn(par$cut, expression(Delta * T[0])) +
     labs(
+      title = paste0("A tax cut of ", T_02_05_num_fn(par$cut, 0),
+                     ", financed by borrowing"),
       x = NULL,
       y = expression(bold("Rise in consumption today (" * Delta * C[t] * ")")),
       caption = paste(
@@ -1338,6 +1356,9 @@ D_04_01_prec_path_fn <- function(par, ref = NULL) {
     T_02_02_mark_y_fn(d$certain, expression(r / (1 + r) * W)) +
     expand_limits(y = d$certain) +
     labs(
+      title = paste0("Prudence holds consumption ",
+                     T_02_05_num_fn(d$buffer, 2),
+                     " below the certainty-equivalent level"),
       x = expression(bold("Period (" * t * ")")),
       y = expression(bold("Consumption (" * C[t] * ")")),
       caption = paste0(
@@ -1411,6 +1432,9 @@ D_04_02_buffer_fn <- function(par, ref = NULL) {
              size = 3.2, hjust = 1, vjust = 1.5,
              colour = T_01_01_palette_vec[["muted"]]) +
     labs(
+      title = paste0("At σ = ", T_02_05_num_fn(par$sd_income, 1),
+                     " precautionary saving is ",
+                     T_02_05_num_fn(d$buffer, 2)),
       x = expression(bold("Standard deviation of the news (" * sigma * ")")),
       y = expression(bold("Consumption today (" * C[t] * ")")),
       caption = paste(
